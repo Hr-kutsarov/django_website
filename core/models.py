@@ -24,9 +24,12 @@ class Play(models.Model):
 
 
 class Ticket(models.Model):
-    seat_number = models.IntegerField('Seat Number')
+    seat_number = models.IntegerField('Seat Number', unique=True)
     price = models.DecimalField('Price', max_digits=5, decimal_places=2)
     play = models.ForeignKey(Play, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Play {self.play} - Seat: {self.seat_number} - Date: {self.play.date} - Time: {self.play.time}"
 
 
 class User(models.Model):
@@ -35,6 +38,7 @@ class User(models.Model):
     email = models.EmailField('E-mail', blank=False, null=False)
     first_name = models.CharField('First Name', max_length=60, blank=False, null=False)
     last_name = models.CharField('Last Name', max_length=60, blank=False, null=False)
+    tickets = models.ManyToManyField(Ticket)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
