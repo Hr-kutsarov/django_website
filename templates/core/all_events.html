@@ -1,0 +1,34 @@
+{% extends 'core/Base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="class-section">
+    <div class="container">
+        <div class="columns mt-5 is-8 is-variable">
+            {% if all_events %}
+            {% for event in all_events %}
+            <div class="column is-5-tablet is-3-desktop">
+                <div class="card">
+                    <div class="card-image has-text-centered px-6">
+                        <img src="{% static 'sample_picture.jpg' %}" alt="">
+                    </div>
+                    <div class="card-content">
+                        <p>{{ event.date }} {{ event.time }}</p>
+                        <p class="title is-size-4">{{ event.title }}</p>
+                    </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item"><span><a href="#">View</a></span></p>
+                        <p class="card-footer-item"><span><a href="#">Edit</a></span></p>
+                        <p class="card-footer-item"><span><a href="#">Delete</a></span></p>
+                    </footer>
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

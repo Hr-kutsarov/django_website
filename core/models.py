@@ -4,7 +4,8 @@ from django.db import models
 class Artist(models.Model):
     first_name = models.CharField('First Name', max_length=60, blank=False, null=False)
     last_name = models.CharField('Last Name', max_length=60, blank=False, null=False)
-    photo = models.ImageField('Photo')
+    birth_date = models.DateField('Birth Date', blank=True, null=True)
+    photo = models.ImageField('Photo', blank=True, null=True)
     bio = models.CharField('Bio', max_length=360, blank=False, null=False)
 
     def __str__(self):
