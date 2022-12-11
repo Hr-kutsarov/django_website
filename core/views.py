@@ -1,10 +1,10 @@
-from django.shortcuts import render
-import calendar
-from calendar import HTMLCalendar
 from datetime import datetime
-from django.views.generic import TemplateView, FormView, ListView
+
+from django.urls import reverse_lazy
+
 from . models import *
 from django.views import generic as views
+from .forms import PlayForm
 
 
 class Home(views.TemplateView):
@@ -25,6 +25,10 @@ class PlayDetailsView(views.DetailView):
     context_object_name = 'play'
 
 
+class CreatePlay(views.CreateView):
+    template_name = 'core/play_create.html'
+    form_class = PlayForm
+    success_url = reverse_lazy('all-plays')
 
 
 

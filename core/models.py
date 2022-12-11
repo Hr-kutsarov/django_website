@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.utils.text import slugify
 
 
 class Artist(models.Model):
@@ -8,6 +9,7 @@ class Artist(models.Model):
     birth_date = models.DateField('Birth Date', blank=True, null=True)
     photo = models.ImageField('Photo', blank=True, null=True)
     bio = models.CharField('Bio', max_length=360, blank=False, null=False)
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -20,13 +22,17 @@ class Play(models.Model):
     time = models.TimeField('Time', blank=False, null=False)
     description = models.CharField('Description', max_length=360, blank=True, null=True)
     artists = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
-    slug = models.SlugField(null=True)
+    slug = models.SlugField(unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(Play, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('app:details', kwargs={"pk": self.pk})
+        return reverse('play-details', kwargs={"slug": self.slug})
 
 
 class Ticket(models.Model):

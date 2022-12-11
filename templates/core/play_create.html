@@ -1,0 +1,17 @@
+{% extends 'core/Base.html' %}
+
+{% load static %}
+{% block content %}
+
+<br>
+    <div class="block">
+    <form method="post">
+    {% csrf_token %}
+    {{ form }}
+        <br><br>
+    <button class="button is-medium">Submit</button>
+        </form>
+    </div>
+
+
+{% endblock %}
