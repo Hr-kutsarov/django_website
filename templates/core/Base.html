@@ -4,18 +4,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome to My local theatre!</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .scrolling-wrapper-flexbox {
+          display: flex;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+
+        }
+
+        .card {
+            overflow-x: auto;
+            flex: 0 0 45%;
+        }
+    </style>
   </head>
 
-<div class='container hero is-fullheight'>
+<body>
 
-    <body>
+<div class='container hero is-fullheight'>
 
         {% include 'core/navbar.html' %}
 
         {% block content %}
         {% endblock %}
-
-    </body>
 
     <div class="hero-foot">
         <footer class="footer">
@@ -27,5 +38,6 @@
 
 </div>
 
+</body>
 
 </html>
