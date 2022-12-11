@@ -7,8 +7,7 @@
     <div class="table-container">
         <div class="columns mt-3 is-1 is-variable">
 
-            {% if all_events %}
-            {% for event in all_events %}
+            {% for event in object_list %}
 
             <div class="column is-4-tablet is-3-desktop">
                 <div class="card help">
@@ -27,7 +26,6 @@
                 </div>
             </div>
             {% endfor %}
-            {% endif %}
         </div>
     </div>
 
