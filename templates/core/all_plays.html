@@ -7,7 +7,7 @@
     <div class="table-container">
         <div class="columns mt-3 is-1 is-variable">
 
-            {% for event in object_list %}
+            {% for play in plays %}
 
             <div class="column is-4-tablet is-3-desktop">
                 <div class="card help">
@@ -15,11 +15,11 @@
                         <img src="{% static 'sample_picture.jpg' %}" alt="">
                     </div>
                     <div class="card-content">
-                        <p>{{ event.date }} {{ event.time }}</p>
-                        <p class="title is-size-5">{{ event.title }}</p>
+                        <p>{{ play.date }} {{ play.time }}</p>
+                        <p class="title is-size-5">{{ play.title }}</p>
                     </div>
                     <footer class="card-footer">
-                        <p class="card-footer-item"><span><a href="#">View</a></span></p>
+                        <p class="card-footer-item"><span><a href="{% url 'play-details' slug=play.slug %}">View</a></span></p>
                         <p class="card-footer-item"><span><a href="#">Edit</a></span></p>
                         <p class="card-footer-item"><span><a href="#">Delete</a></span></p>
                     </footer>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class Artist(models.Model):
@@ -13,15 +14,19 @@ class Artist(models.Model):
 
 
 class Play(models.Model):
-    title = models.CharField('Title', max_length=60, blank=False, null=False)
+    title = models.CharField('Title', max_length=60, unique=True, blank=False, null=False)
     genre = models.CharField('Genre', max_length=20, blank=False, null=False)
     date = models.DateField('Date', blank=False, null=False)
     time = models.TimeField('Time', blank=False, null=False)
     description = models.CharField('Description', max_length=360, blank=True, null=True)
     artists = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
+    slug = models.SlugField(null=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('app:details', kwargs={"pk": self.pk})
 
 
 class Ticket(models.Model):

@@ -15,7 +15,19 @@ class Home(views.TemplateView):
 
 class AllPlays(views.ListView):
     model = Play
-    template_name = 'core/all_events.html'
+    context_object_name = 'plays'
+    template_name = 'core/all_plays.html'
+
+
+class PlayDetailsView(views.DetailView):
+    model = Play
+    template_name = 'core/play_details.html'
+    context_object_name = 'play'
+
+
+
+
+
 
 
 
