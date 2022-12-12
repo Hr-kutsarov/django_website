@@ -1,0 +1,16 @@
+{% extends 'core/Base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+{% if searched %}
+    <h1>The search returned {{ number_of_plays }} items.</h1>
+    <h1>You searched for {{ searched }}</h1>
+    {% for play in plays %}
+        <li><a href="{% url 'play-details' slug=play.slug %}">{{ play }}</a></li>
+
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

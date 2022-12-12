@@ -19,15 +19,18 @@
     </style>
   </head>
 
+    {% include 'core/navbar.html' %}
 
 <body>
-<div class='container hero is-fullheight'>
 
-        {% include 'core/navbar.html' %}
 
+ <div class="hero-body is-one-fifth is-align-self-center">
         {% block content %}
 
         {% endblock %}
+ </div>
+
+</body>
 
     <div class="hero-foot">
         <footer class="footer">
@@ -37,8 +40,5 @@
         </footer>
 
     </div>
-</div>
 
-
-</body>
 </html>

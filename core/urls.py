@@ -9,4 +9,5 @@ urlpatterns = [
     path('create_play/', CreatePlay.as_view(), name='create-play'),
     path('<slug:slug>/edit/', EditPlay.as_view(), name='edit-play'),
     path('<slug:slug>/delete/', DeletePlay.as_view(), name='delete-play'),
+    path('search/', search_plays, name='search_results'),
 ]

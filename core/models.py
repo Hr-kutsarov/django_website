@@ -27,6 +27,9 @@ class Play(models.Model):
         self.slug = slugify(self.title)
         super(Play, self).save(*args, **kwargs)
 
+    class Meta:
+        ordering = ['date']
+
     def __str__(self):
         return self.title
 

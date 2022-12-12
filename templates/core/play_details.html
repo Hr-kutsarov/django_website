@@ -2,11 +2,29 @@
 {% load static %}
 
 {% block content %}
-    <h1>{{ play.title }}</h1>
-    <h1>{{ play.date }}</h1>
-    <h1>{{ play.genre }}</h1>
-    <h1>{{ play.artists }}</h1>
-    <h1>{{ play.time }}</h1>
-    <h1>{{ play.description }}</h1>
+    <div class="card">
+  <div class="card-content">
+    <p class="title">{{ play.title }}</p>
+    <p class="subtitle">Genre: {{ play.genre }}</p>
+    <p class="subtitle">Date: {{ play.date }} Time: {{ play.time }}</p>
+
+    <p class="submit-row">Actors: {{ play.artists }}</p>
+      <br>
+    <p class="subtitle">{{ play.description }}</p>
+  </div>
+
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        <a href="{% url 'all-plays' %}">Return</a>
+      </span>
+    </p>
+    <p class="card-footer-item">
+      <span>
+          <a href="#">Buy tickets</a>
+      </span>
+    </p>
+  </footer>
+</div>
 
 {% endblock  %}
