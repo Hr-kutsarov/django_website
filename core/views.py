@@ -39,6 +39,13 @@ class EditPlay(views.UpdateView):
     success_url = reverse_lazy('all-plays')
 
 
+class DeletePlay(views.DeleteView):
+    model = Play
+    template_name = 'core/delete-confirm.html'
+    success_url = reverse_lazy('all-plays')
+
+
+
 
 
 
