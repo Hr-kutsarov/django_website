@@ -10,7 +10,6 @@ class Artist(models.Model):
     photo = models.ImageField('Photo', blank=True, null=True)
     bio = models.CharField('Bio', max_length=360, blank=False, null=False)
 
-
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 

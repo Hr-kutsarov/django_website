@@ -20,7 +20,7 @@
                     </div>
                     <footer class="card-footer">
                         <p class="card-footer-item"><span><a href="{% url 'play-details' slug=play.slug %}">Details</a></span></p>
-                        <p class="card-footer-item"><span><a href="#">Edit</a></span></p>
+                        <p class="card-footer-item"><span><a href="{% url 'edit-play' slug=play.slug %}">Edit</a></span></p>
                         <p class="card-footer-item"><span><a href="#">Delete</a></span></p>
                     </footer>
                 </div>

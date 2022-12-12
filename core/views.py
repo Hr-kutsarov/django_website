@@ -31,6 +31,14 @@ class CreatePlay(views.CreateView):
     success_url = reverse_lazy('all-plays')
 
 
+class EditPlay(views.UpdateView):
+    model = Play
+    form_class = PlayForm
+    template_name = 'core/play_edit.html'
+    context_object_name = 'play'
+    success_url = reverse_lazy('all-plays')
+
+
 
 
 
