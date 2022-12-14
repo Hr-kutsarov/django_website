@@ -9,36 +9,7 @@
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
 
-      <div class="navbar-item has-dropdown is-hoverable">
-       <a class="navbar-link" href="https://bulma.io/documentation/overview/start/">
-          Docs
-        </a>
-        <div class="navbar-dropdown is-boxed">
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/start/">
-            Overview
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/overview/modifiers/">
-            Modifiers
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/columns/basics/">
-            Columns
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/layout/container/">
-            Layout
-          </a>
-          <a class="navbar-item" href="https://bulma.io/documentation/form/general/">
-            Form
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item" href="https://bulma.io/documentation/elements/box/">
-            Elements
-          </a>
-          <a class="navbar-item is-active" href="https://bulma.io/documentation/components/breadcrumb/">
-            Components
-          </a>
 
-        </div>
-      </div>
 
       <div class="navbar-item has-dropdown is-hoverable">
        <a class="navbar-link" href="{% url 'all-plays' %}">Plays</a>
@@ -56,6 +27,7 @@
         {% if user.is_authenticated %}
             <div class="navbar-item"><a href="{% url 'logout' %}">Log out</a></div>
         {% else %}
+            <div class="navbar-item"><a href="{% url 'register' %}">Register</a></div>
             <div class="navbar-item"><a href="{% url 'login' %}">Sign in</a></div>
         {% endif %}
       <div class="navbar-item">

@@ -8,7 +8,7 @@ class PlayForm(ModelForm):
         model = Play
         fields = ('title', 'genre', 'time', 'date', 'description', 'artists')
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'input', 'type':'text', 'placeholder': 'Title'}),
+            'title': forms.TextInput(attrs={'class': 'input', 'type': 'text', 'placeholder': 'Title'}),
             'genre': forms.TextInput(attrs={'class': 'input', 'type': 'text', 'placeholder': 'Genre'}),
             'time': forms.TimeInput(attrs={'class': 'input', 'type': 'time', 'placeholder': 'Time'}),
             'date': forms.DateInput(attrs={'class': 'input', 'type': 'date', 'placeholder': 'Date'}),
