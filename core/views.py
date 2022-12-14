@@ -1,5 +1,6 @@
 from datetime import datetime
 
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from . models import *
@@ -50,7 +51,8 @@ def search_plays(request):
         searched = request.POST['searched']
         plays = Play.objects.filter(title__contains=searched)
         number_of_plays = len(plays)
-        return render(request, 'core/search.html', {'plays': plays, 'searched': searched, 'number_of_plays': number_of_plays})
+        context = {'plays': plays, 'searched': searched, 'number_of_plays': number_of_plays}
+        return render(request, 'core/search.html', context)
 
 
 

@@ -50,7 +50,14 @@
         </div>
       </div>
 
+
+
     <div class="navbar-end">
+        {% if user.is_authenticated %}
+            <div class="navbar-item"><a href="{% url 'logout' %}">Log out</a></div>
+        {% else %}
+            <div class="navbar-item"><a href="{% url 'login' %}">Sign in</a></div>
+        {% endif %}
       <div class="navbar-item">
           <div class="control">
         <form class="is-active" method=POST action="{% url 'search_results' %}">
