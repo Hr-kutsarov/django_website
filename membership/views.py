@@ -1,9 +1,9 @@
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import RegisterUserForm
+from django.urls import reverse_lazy
+from django.contrib.auth.models import Group
+from membership.forms import DefaultUserRegisterForm
 
 
 def login_user_view(request):
@@ -28,25 +28,35 @@ def logout_user_view(request):
 
 def register_user_view(request):
     if request.method == "POST":
-        form = RegisterUserForm(request.POST)
+        form = DefaultUserRegisterForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']
-            user = authenticate(username=username, password=password)
-
-            # login
+            user = form.save()
+            group = Group.objects.get(name='User')
+            user.groups.add(group)
             login(request, user)
-
-            # get username
-
-            messages.success(request, f'Welcome {user.first_name}!')
-
-            # redirect to homepage
+            messages.success(request, "Registration successful.")
             return redirect('home')
 
     else:
-        form = RegisterUserForm()
+        form = DefaultUserRegisterForm()
+
+    return render(request, 'membership/register.html', {'form': form})
+
+
+def register_moderator_view(request):
+    if request.method == "POST":
+        form = DefaultUserRegisterForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            group = Group.objects.get(name='Moderator')
+            user.groups.add(group)
+            login(request, user)
+            messages.success(request, "You have registered successfully as a Moderator.")
+            return redirect('home')
+
+    else:
+        form = DefaultUserRegisterForm()
 
     return render(request, 'membership/register.html', {'form': form})

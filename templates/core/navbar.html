@@ -1,43 +1,61 @@
 {% load static %}
-<nav class="navbar is-transparent">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="{% url 'home' %}">
-      <img src="{% static 'logo.png' %}" alt="Logo" width="112" height="28">
-    </a>
-  </div>
+<nav class="navbar is-fullheight" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="{% url 'home' %}">
+          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
+        </a>
 
-  <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-start">
+        <div class="navbar-item is-boxed"><a href="{% url 'all-plays' %}">Watch now</a></div>
+        <div class="navbar-item is-boxed"><a href="#">Artists</a></div>
+        <div class="navbar-item is-boxed"><a href="#">News</a></div>
 
-
-
-      <div class="navbar-item has-dropdown is-hoverable">
-       <a class="navbar-link" href="{% url 'all-plays' %}">Plays</a>
-            <div class="navbar-dropdown is-boxed">
-              <a class="navbar-item" href="{% url 'create-play' %}">Create</a>
-              <a class="navbar-item" href="#">Edit</a>
-              <a class="navbar-item" href="#">Delete</a>
-            </div>
-        </div>
-      </div>
+        {% if user.is_authenticated %}
+            <div class="navbar-item is-boxed"><a href="#">Buy a ticket</a></div>
+            <div class="navbar-item is-boxed"><a href="#">Make a gift</a></div>
+        {% endif %}
 
 
 
     <div class="navbar-end">
         {% if user.is_authenticated %}
-            <div class="navbar-item"><a href="{% url 'logout' %}">Log out</a></div>
+            <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="#">Profile</a>
+                <div class="navbar-dropdown is-boxed">
+                  <a class="navbar-item" href="#">My Profile</a>
+                  <a class="navbar-item" href="#">Change password</a>
+                    <hr class="navbar-divider">
+                  <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
         {% else %}
-            <div class="navbar-item"><a href="{% url 'register' %}">Register</a></div>
-            <div class="navbar-item"><a href="{% url 'login' %}">Sign in</a></div>
+            <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="#">Profile</a>
+                <div class="navbar-dropdown is-boxed">
+                  <a class="navbar-item" href="{% url 'login' %}">Sign in</a>
+                    <hr class="navbar-divider">
+                  <a class="navbar-item" href="{% url 'register' %}">Register</a>
+                </div>
+            </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link" href="#">Staff Only</a>
+                <div class="navbar-dropdown is-boxed">
+                  <a class="navbar-item" href="{% url 'login' %}">Sign in</a>
+                    <hr class="navbar-divider">
+                  <a class="navbar-item" href="{% url 'register_admin' %}">Register</a>
+                </div>
+            </div>
         {% endif %}
-      <div class="navbar-item">
-          <div class="control">
-        <form class="is-active" method=POST action="{% url 'search_results' %}">
-            {% csrf_token %}
-            <input class="input" type="text" placeholder="Search" aria-label="Search" name="searched">
-        </form>
 
-      </div>
+      <div class="navbar-item">
+        <div class="control">
+
+            <form class="is-active" method=POST action="{% url 'search_results' %}">
+                {% csrf_token %}
+                <input class="input" type="text" placeholder="Search" aria-label="Search" name="searched">
+            </form>
+
+        </div>
       </div>
     </div>
 

@@ -1,23 +1,33 @@
 {% extends 'core/Base.html' %}
 
 
-
 {% block content %}
 
-        {% if form.error_messages %}
-            {% for message in form.error_messages %}
-                <p>{{  message }}</p>
-            {% endfor %}
-        {% endif %}
-    <br><br>
-    <form action="{% url 'register' %}" method=POST>
-    {% csrf_token %}
 
-        {{ form.as_p }}
-        <br>
-        <button class="submit-row">Submit</button>
 
-    </form>
+<div class="columns">
+
+    <div class="column is is-one-fifth"></div>
+    <div class="column">
+
+    {% if form.errors %}
+        <div class="notification is-danger">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+
+        <form action="" method=POST>
+        {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button class="button is-medium">Submit</button>
+        </form>
+
+    </div>
+    <div class="column is is-one-fifth"></div>
+
+</div>
 
 
 {% endblock %}

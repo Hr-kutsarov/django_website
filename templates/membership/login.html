@@ -4,19 +4,29 @@
 
 {% block content %}
 
+<div class="columns">
+<div class="column is is-one-fifth"></div>
+    <div class="column">
 
-    <form action="" method=POST>
-    {% csrf_token %}
-    <div class="mb-3">
-        <input type="text" class="form-row" name="username">
+        <form action="" method=POST>
+        {% csrf_token %}
+
+            <div class="mb-3">
+                <input type="text" class="input" name="username" placeholder="E-mail:">
+            </div>
+
+            <div class="mb-3">
+                <input type="password" class="input" name="password" placeholder="Password:">
+            </div>
+
+            <button class="button is-medium">Submit</button>
+
+        </form>
+
     </div>
+<div class="column is is-one-fifth"></div>
+</div>
 
-    <div class="mb-3">
-        <input type="password" class="form-row" name="password">
-    </div>
-        <button class="submit-row">Submit</button>
-
-    </form>
 
 
 {% endblock %}
