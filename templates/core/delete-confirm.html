@@ -3,12 +3,20 @@
 {% load static %}
 
 {% block content %}
+<div class="columns">
+<div class="column is-one-fifth"></div>
+<div class="column">
+    <div class="container">
+     <form method="post">{% csrf_token %}
 
-    <form method="post">{% csrf_token %}
+        <p class="title is-center">Are you sure you want to delete "{{ object }}"?</p>
 
-    <p>Are you sure you want to delete "{{ object }}"?</p>
+         <button class="button is-medium">Yes</button>
 
-    <input type="submit" value="Confirm">
+     </form>
+    </div>
+</div>
+<div class="column is-one-fifth"></div>
+</div>
 
-</form>
 {% endblock %}

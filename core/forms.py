@@ -15,3 +15,9 @@ class PlayForm(ModelForm):
             'description': forms.Textarea(attrs={'class': 'textarea', 'type': 'text', 'placeholder': 'Description', 'rows': '10'}),
             'artists': forms.Select(attrs={'class': 'input', 'type': 'select', 'placeholder': 'Description', 'rows': '10'}),
         }
+
+
+class ArtistForm(ModelForm):
+    class Meta:
+        model = Artist
+        fields = ('first_name', 'last_name', 'birth_date', 'photo', 'bio')

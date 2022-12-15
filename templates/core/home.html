@@ -5,6 +5,7 @@
 {% block content %}
     {% if user.is_authenticated %}
         <h1>Logged as {{ user }}</h1>
+        <h1>{{ perms.core }}</h1>
     {% endif %}
     <div class="hero-body is-one-fifth is-align-self-center">
     <div class="hero-body is-two-thirds"><h3> Current date: {{ date.date }}</h3></div>

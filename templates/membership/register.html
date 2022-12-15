@@ -19,9 +19,25 @@
         <form action="" method=POST>
         {% csrf_token %}
 
-            {{ form.as_p }}
+            <div class="mb-3">
+                <input type="text" class="input" name="username" placeholder="Username:">
+            </div>
+
+            <div class="mb-3">
+                <input type="password" class="input" name="password1" placeholder="Password:">
+            </div>
+
+            <div class="mb-3">
+                <input type="password" class="input" name="password2" placeholder="Repeat password:">
+            </div>
+
+            <div class="mb-3">
+                <input type="email" class="input" name="email" placeholder="Email:">
+            </div>
+
 
             <button class="button is-medium">Submit</button>
+
         </form>
 
     </div>

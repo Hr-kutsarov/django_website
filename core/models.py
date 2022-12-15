@@ -22,6 +22,7 @@ class Play(models.Model):
     description = models.CharField('Description', max_length=360, blank=True, null=True)
     artists = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(unique=True)
+    price = models.IntegerField('Price', blank=False, null=False, default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)

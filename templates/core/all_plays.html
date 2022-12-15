@@ -20,8 +20,12 @@
                     </div>
                     <footer class="card-footer">
                         <p class="card-footer-item"><span><a href="{% url 'play-details' slug=play.slug %}">Details</a></span></p>
+                        {% if perms.core.change_play %}
                         <p class="card-footer-item"><span><a href="{% url 'edit-play' slug=play.slug %}">Edit</a></span></p>
+                        {% endif %}
+                        {% if perms.core.delete_play %}
                         <p class="card-footer-item"><span><a href="{% url 'delete-play' slug=play.slug %}">Delete</a></span></p>
+                        {%endif %}
                     </footer>
                 </div>
             </div>
