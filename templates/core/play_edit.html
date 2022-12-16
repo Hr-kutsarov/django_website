@@ -3,59 +3,32 @@
 {% load static %}
 {% block content %}
 
+<div class="container is-fullheight">
+    <div class="columns">
+        <div class="column is is-one-fifth"></div>
+        <div class="column">
 
+                <form method="post">
 
-<div class="columns">
-    <div class="column is is-one-fifth"></div>
-    <div class="column">
+                {% csrf_token %}
 
-            <form method="post">
+                {{ form.as_p }}
 
-            {% csrf_token %}
+                <div class="mb-3">
+                    {% if perms.core.delete_play %}
+                        <button class="button is-medium is-danger"><a href="{% url 'delete-play' slug=play.slug %}">Delete</a></button>
+                    {% endif %}
 
-            <div class="mb-3">
-                <input type="text" class="input" name="title" placeholder="Title:">
+                    {% if perms.core.change_play %}
+                        <button class="button is-medium">Submit</button>
+                    {% endif %}
+                </div>
+                </form>
+
             </div>
-
-            <div class="mb-3">
-                <input type="text" class="input" name="genre" placeholder="Genre:">
-            </div>
-
-            <div class="mb-3">
-                <input type="date" class="input" name="date" placeholder="Date:">
-            </div>
-
-            <div class="mb-3">
-                <input type="time" class="input" name="time" placeholder="Time:">
-            </div>
-
-            <div class="mb-3">
-                <input type="text" class="input" name="description" placeholder="Description:">
-            </div>
-
-            <div class="select is-multiple mb-3">
-                <select class="mb-3" name="artists">
-                    {% for value in form.artists %}
-                     <option>{{ value }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-
-            <div class="mb-3">
-                {% if perms.core.deleteplay %}
-                    <button class="button is-medium is-danger"><a href="{% url 'delete-play' slug=play.slug %}">Delete</a></button>
-                {% endif %}
-
-                {% if perms.core.editplay %}
-                    <button class="button is-medium">Submit</button>
-                {% endif %}
-            </div>
-            </form>
-
+        <div class="column is is-one-fifth"></div>
         </div>
-    <div class="column is is-one-fifth"></div>
     </div>
 </div>
-
 
 {% endblock %}

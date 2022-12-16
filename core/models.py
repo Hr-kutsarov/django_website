@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from datetime import datetime
 
 
 class Artist(models.Model):
@@ -22,7 +23,7 @@ class Play(models.Model):
     description = models.CharField('Description', max_length=360, blank=True, null=True)
     artists = models.ForeignKey(Artist, on_delete=models.CASCADE, blank=True, null=True)
     slug = models.SlugField(unique=True)
-    price = models.IntegerField('Price', blank=False, null=False, default=0)
+    price = models.CharField('Price', max_length=10, blank=False, null=False)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -59,3 +60,11 @@ class User(models.Model):
         return f"{self.first_name} {self.last_name}"
 
 
+class News(models.Model):
+    title = models.CharField('Title', max_length=60, unique=True, blank=False, null=False)
+    date = models.DateField('Date', blank=False, null=False, default=datetime.now)
+    time = models.TimeField('Time', blank=False, null=False, default=datetime.now)
+    content = models.CharField('Content', max_length=360, blank=True, null=True)
+
+    class Meta:
+        ordering = ['date']

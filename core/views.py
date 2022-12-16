@@ -1,11 +1,12 @@
 from datetime import datetime
 
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from . models import *
 from django.views import generic as views
-from .forms import PlayForm
+from .forms import PlayForm, NewsForm
 
 
 class Home(views.TemplateView):
@@ -55,9 +56,52 @@ def search_plays(request):
         return render(request, 'core/search.html', context)
 
 
+def profile(request):
+
+    return render(request, 'core/profile.html', {})
 
 
+class AllNews(views.ListView):
+    model = News
+    template_name = 'core/news_all.html'
+    paginate_by = 3
 
+    def get_context_data(self, **kwargs):
+        context = super(AllNews, self).get_context_data(**kwargs)
+        news = News.objects.all()
+        paginator = Paginator(news, self.paginate_by)
+
+        page = self.request.GET.get('page')
+
+        try:
+            file_news = paginator.page(page)
+        except PageNotAnInteger:
+            file_news = paginator.page(1)
+        except EmptyPage:
+            file_news = paginator.page(paginator.num_pages)
+
+        context['all_news'] = file_news
+        return context
+
+
+class NewsCreate(views.CreateView):
+    template_name = 'core/news_create.html'
+    form_class = NewsForm
+    success_url = reverse_lazy('all-news')
+
+
+class NewsEdit(views.UpdateView):
+    model = News
+    form_class = NewsForm
+    template_name = 'core/news_edit.html'
+    context_object_name = 'news'
+    success_url = reverse_lazy('all-news')
+
+
+class NewsDelete(views.DeleteView):
+    model = News
+    template_name = 'core/delete-confirm.html'
+    success_url = reverse_lazy('all-news')
 
 
 

@@ -10,4 +10,10 @@ urlpatterns = [
     path('<slug:slug>/edit/', EditPlay.as_view(), name='edit-play'),
     path('<slug:slug>/delete/', DeletePlay.as_view(), name='delete-play'),
     path('search/', search_plays, name='search_results'),
+    path('profile/', profile, name='profile'),
+
+    path('news/', AllNews.as_view(), name='all-news'),
+    path('create_news/', NewsCreate.as_view(), name='create-news'),
+    path('edit/<int:pk>', NewsEdit.as_view(), name='edit-news'),
+    path('delete/<int:pk>', NewsDelete.as_view(), name='delete-news'),
 ]

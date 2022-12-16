@@ -7,23 +7,25 @@
     <div class="columns">
         <div class="column is is-one-fifth"></div>
         <div class="column">
-            <h1><strong>Create new play</strong></h1>
+            <h1><strong>Edit news</strong></h1>
         <br>
+                {% if perms.core.change_news %}
                 <form method="post">
 
                 {% csrf_token %}
 
                 {{ form.as_p }}
 
+                <br>
+
                 <div class="mb-3">
 
 
-                    {% if perms.core.add_play %}
-                        <br>
                         <button class="button is-medium">Submit</button>
-                    {% endif %}
+
                 </div>
                 </form>
+                {% endif %}
 
             </div>
         <div class="column is is-one-fifth"></div>

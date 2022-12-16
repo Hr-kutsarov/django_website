@@ -2,29 +2,34 @@
 {% load static %}
 
 {% block content %}
-    <div class="card">
-  <div class="card-content">
-    <p class="title">{{ play.title }}</p>
-    <p class="subtitle">Genre: {{ play.genre }}</p>
-    <p class="subtitle">Date: {{ play.date }} Time: {{ play.time }}</p>
+        <div class="columns">
+            <div class="column is-one-fifth"></div>
+            <div class="column">
 
-    <p class="submit-row">Actors: {{ play.artists }}</p>
-      <br>
-    <p class="subtitle">{{ play.description }}</p>
-  </div>
+                <div class="card">
+                    <div class="card-content">
+                        <p class="title">{{ play.title }}</p>
+                        <br>
+                        <p class="subtitle">Genre: {{ play.genre }}</p>
+                        <p class="subtitle">Date: {{ play.date }} Time: {{ play.time }}</p>
+                        <p class="subtitle">Actors: {{ play.artists }}</p>
+                        <p class="subtitle">{{ play.description }}</p>
+                        <br>
+                    </div>
 
-  <footer class="card-footer">
-    <p class="card-footer-item">
-      <span>
-        <a href="{% url 'all-plays' %}">Return</a>
-      </span>
-    </p>
-    <p class="card-footer-item">
-      <span>
-          <a href="#">Buy tickets</a>
-      </span>
-    </p>
-  </footer>
-</div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                            <span><a href="{% url 'all-plays' %}">Return</a></span>
+                        </p>
+                        <p class="card-footer-item">
+                            <span>
+                                <a href="#">Buy tickets</a>
+                            </span>
+                        </p>
+                    </footer>
+                </div>
+            </div>
+            <div class="column is-one-fifth"></div>
+        </div>
 
 {% endblock  %}

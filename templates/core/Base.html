@@ -9,20 +9,21 @@
     {% include 'core/navbar.html' %}
 
 <body>
-
  <div class="hero-body is-one-fifth is-align-self-center">
         {% if messages %}
+
             {% for message in messages %}
+
                 <article class="message">
-  <div class="message-header">
-    <p>Message</p>
-    <button class="delete" aria-label="delete"></button>
-  </div>
-  <div class="message-body">
-     {{ message }}
-  </div>
-</article>
+                  <div class="message-header">
+                    <p>Message</p>
+                    <button class="delete" aria-label="delete"></button>
+                  </div>
+                <div class="message-body">{{ message }}</div>
+                </article>
+
             {% endfor %}
+
         {% endif %}
 
         {% block content %}
@@ -32,13 +33,12 @@
 
 </body>
 
-    <div class="hero-foot">
-        <footer class="footer">
+<br><br><br><br><br><br><br><br><br><br>
+        <footer class="footer is-fixed-bottom">
               <div class="has-text-centered">
                   <p>This is a school project by Hristo Kutsarov for <a href="https://softuni.bg/">@SoftUni</a></p>
               </div>
         </footer>
 
-    </div>
 
 </html>

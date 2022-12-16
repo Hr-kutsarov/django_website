@@ -3,38 +3,46 @@
 
 {% block content %}
 
-<div class="class-section">
-    <div class="table-container">
+<div class="container is-fullheight">
+    <div class="table-container is-fullheight">
         <div class="columns mt-3 is-1 is-variable">
+
+        {% if plays %}
 
             {% for play in plays %}
 
             <div class="column is-4-tablet is-3-desktop">
                 <div class="card help">
                     <div class="card-image has-text-centered px-6">
-                        <img src="{% static 'sample_picture.jpg' %}" alt="">
+                        <a href="{% url 'play-details' slug=play.slug %}"><img src="{% static 'sample_picture.jpg' %}" alt=""></a>
                     </div>
                     <div class="card-content">
                         <p>{{ play.date }} {{ play.time }}</p>
+                        <br>
                         <p class="title is-size-5">{{ play.title }}</p>
+                        <br>
+                        <p class="title is-size-6"><span>{{ play.price }}</span></p>
                     </div>
                     <footer class="card-footer">
-                        <p class="card-footer-item"><span><a href="{% url 'play-details' slug=play.slug %}">Details</a></span></p>
                         {% if perms.core.change_play %}
                         <p class="card-footer-item"><span><a href="{% url 'edit-play' slug=play.slug %}">Edit</a></span></p>
                         {% endif %}
                         {% if perms.core.delete_play %}
                         <p class="card-footer-item"><span><a href="{% url 'delete-play' slug=play.slug %}">Delete</a></span></p>
-                        {%endif %}
+                        {% endif %}
                     </footer>
                 </div>
             </div>
             {% endfor %}
+
+
+        {% endif %}
         </div>
     </div>
 
-    <br>
 
+
+    {{ form }}
 </div>
 
 {% endblock %}

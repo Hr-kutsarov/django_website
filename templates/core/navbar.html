@@ -7,12 +7,14 @@
 
     <div class="navbar-start">
         <div class="navbar-item is-boxed"><a href="{% url 'all-plays' %}">Watch now</a></div>
+        <div class="navbar-item is-boxed"><a href="{% url 'create-play' %}">Create play</a></div>
         <div class="navbar-item is-boxed"><a href="#">Artists</a></div>
-        <div class="navbar-item is-boxed"><a href="#">News</a></div>
+        <div class="navbar-item is-boxed"><a href="{% url 'all-news' %}">News</a></div>
 
         {% if user.is_authenticated %}
             <div class="navbar-item is-boxed"><a href="#">Buy a ticket</a></div>
             <div class="navbar-item is-boxed"><a href="#">Make a gift</a></div>
+
         {% endif %}
 
 
@@ -20,7 +22,7 @@
     <div class="navbar-end">
         {% if user.is_authenticated %}
             <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="#">Profile</a>
+            <a class="navbar-link" href="{% url 'profile' %}">Profile</a>
                 <div class="navbar-dropdown is-boxed">
                   <a class="navbar-item" href="#">My Profile</a>
                   <a class="navbar-item" href="#">Change password</a>

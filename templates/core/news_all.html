@@ -1,0 +1,74 @@
+{% extends 'core/Base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container is-fullheight">
+    <div class="columns">
+        <div class="column is is-one-fifth"></div>
+        <div class="column">
+
+        {% if all_news %}
+            <div class="block"><strong>All news</strong></div>
+        {% else %}
+            <div class="block"><strong>No News</strong></div>
+        {% endif %}
+
+            {% for n in all_news %}
+            <div class="box">
+
+
+
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-align-self-auto">
+        <a href="#"><img src="{% static 'sample_logo.png' %}" alt="Image"></a>
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{ n.title }}</strong> <small>{{ n.date }}</small> <small>{{ n.time }}</small>
+          <br>
+          {{ n.content }}
+        </p>
+      </div>
+      <nav class="level">
+        <div class="level-right">
+            {% if perms.core.change_news %}
+            <button class="button is-small"><a href="{% url 'edit-news' pk=n.pk %}">Edit</a></button>
+            {% endif %}
+            {% if perms.core.delete_news %}
+            <button class="button is-small"><a href="{% url 'delete-news' pk=n.pk %}">Delete</a></button>
+            {% endif %}
+        </div>
+      </nav>
+
+    </div>
+  </article>
+</div>
+{% endfor %}
+
+
+{% if is_paginated %}
+<ul class="pagination">
+    {% if page_obj.has_previous %}
+        <li>
+            <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+        </li>
+    {% endif %}
+        <li class=""><span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span></li>
+    {% if page_obj.has_next %}
+        <li><span><a href="?page={{ page_obj.next_page_number }}">Next</a></span></li>
+    {% endif %}
+</ul>
+{% endif %}
+
+        <button class="button is-medium"><a href="{% url 'create-news' %}">Create</a></button>
+        </div>
+        <div class="column is is-one-fifth"></div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br>
+{% endblock %}
