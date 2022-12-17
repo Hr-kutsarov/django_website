@@ -13,7 +13,7 @@
   <article class="media">
     <div class="media-left">
       <figure class="image is-align-self-auto">
-        <a href="#"><img src="{% static 'sample_logo.png' %}" alt="Image"></a>
+        <a href="{% url 'details-news' pk=news.pk %}"><img src="{% static 'sample_logo.png' %}" alt="Image"></a>
       </figure>
     </div>
     <div class="media-content">
@@ -26,12 +26,12 @@
       </div>
       <nav class="level">
         <div class="level-right">
-
+            {% if perms.core.change_news %}
             <button class="button is-small"><a href="{% url 'edit-news' pk=news.pk %}">Edit</a></button>
-
-
+            {% endif %}
+            {% if perms.core.delete_news %}
             <button class="button is-small"><a href="{% url 'delete-news' pk=news.pk %}">Delete</a></button>
-
+            {% endif %}
         </div>
       </nav>
 

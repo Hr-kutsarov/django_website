@@ -11,7 +11,10 @@ from itertools import chain
 class Home(views.TemplateView):
     template_name = 'core/home.html'
     date = datetime.now()
-    extra_context = {'date': date}
+    plays = Play.objects.all()
+    latest_news = News.objects.filter()[:1].get()
+    artists = Artist.objects.all()
+    extra_context = {'date': date, 'plays': plays, 'latest_news': latest_news, 'artists': artists}
 
 
 class AllPlays(views.ListView):

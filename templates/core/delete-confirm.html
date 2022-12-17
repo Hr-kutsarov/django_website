@@ -8,6 +8,7 @@
         <div class="column is-one-fifth"></div>
         <div class="column ">
             <div class="container">
+                {% if perms.core.delete_play or perms.core.delete_news or perms.core.delete_artist %}
              <form method="post">{% csrf_token %}
 
                 <p class="title is-center">Are you sure you want to delete "{{ object }}"?</p>
@@ -15,6 +16,14 @@
                  <button class="button is-medium">Yes</button>
 
              </form>
+                {% else %}
+
+                <article class="message">
+                  <div class="message-header"><p>Message</p></div>
+                <div class="message-body">You have no permissions to view this page.</div>
+                </article>
+
+                {% endif %}
             </div>
         </div>
         <div class="column is-one-fifth"></div>

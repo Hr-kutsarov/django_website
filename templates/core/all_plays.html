@@ -8,9 +8,7 @@
         <div class="columns mt-3 is-1 is-variable">
 
         {% if plays %}
-
             {% for play in plays %}
-
             <div class="column is-4-tablet is-3-desktop">
                 <div class="card help">
                     <div class="card-image has-text-centered px-6">
@@ -33,12 +31,70 @@
                     </footer>
                 </div>
             </div>
+
             {% endfor %}
 
+            {% else %}
+
+                <article class="message">
+                  <div class="message-header"><p>Message</p></div>
+                <div class="message-body">This page has no content.</div>
+                </article>
 
         {% endif %}
         </div>
     </div>
 </div>
+<div class="columns">
+<div class="column is-one-fifth"></div>
+
+    <div class="column">
+        <div class="container default">
+        <div class="section heading is-centered">
+            <h5 class="title has-text-grey-light  has-text-centered is-bold">Details</h5>
+        </div>
+    </div>
+
+  <div class="table-container is-max-desktop">
+  <table class="table is-vcentered">
+
+    <!-- Your table content -->
+  <thead>
+    <tr>
+      <th><abbr title="Position">No.</abbr></th>
+      <th><abbr title="Played">Title</abbr></th>
+      <th><abbr title="Won">Date</abbr></th>
+      <th><abbr title="Drawn">Time</abbr></th>
+      <th><abbr title="Lost">Artists</abbr></th>
+      <th><abbr title="Goals for">Price</abbr></th>
+      <th><abbr title="Goals for">Price</abbr></th>
+      <th><abbr title="Goals for">Price</abbr></th>
+      <th><abbr title="Goals for">Price</abbr></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  {% for play in plays %}
+    <tr>
+      <th>{{ play.pk }}</th>
+        <td><a href="{% url 'play-details' slug=play.slug %}">{{ play.title }}</a></td>
+      <td>{{ play.date }}</td>
+      <td>{{ play.time }}</td>
+      <td>{{ play.artists }}</td>
+      <td>{{ play.price }}</td>
+      <td>{{ play.price }}</td>
+      <td>{{ play.price }}</td>
+      <td>{{ play.price }}</td>
+    </tr>
+ {% endfor %}
+
+  </tbody>
+
+  </table>
+</div>
+    </div>
+<div class="column is-one-fifth"></div>
+</div>
+
 
 {% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'core/Base.html' %}
-
+{% load static %}
 
 
 {% block content %}
@@ -7,7 +7,120 @@
         <h1>Logged as {{ user }}</h1>
         <h1>{{ perms.core }}</h1>
     {% endif %}
-    <div class="hero-body is-one-fifth is-align-self-center">
-    <div class="hero-body is-two-thirds"><h3> Current date: {{ date.date }}</h3></div>
+{% if plays %}
+<div class="container default ce">
+    <div class="section heading is-centered">
+        <h4 class="title has-text-grey-light  has-text-centered is-bold">My local theatre tickets</h4>
     </div>
+</div>
+<div class="container is-fullheight">
+    <div class="table-container is-fullheight">
+        <div class="columns mt-3 is-1 is-variable">
+
+            {% for play in plays %}
+            <div class="column is-4-tablet is-3-desktop">
+                <div class="card help">
+                    <div class="card-image has-text-centered px-6">
+                        <a href="{% url 'play-details' slug=play.slug %}"><img src="{% static 'sample_picture.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="card-content">
+                        <p>{{ play.date }} {{ play.time }}</p>
+                        <br>
+                        <p class="title is-size-5">{{ play.title }}</p>
+                        <br>
+                        <p class="title is-size-6"><span>{{ play.price }}</span></p>
+                    </div>
+                    <footer class="card-footer">
+                        {% if perms.core.change_play %}
+                        <p class="card-footer-item"><span><a href="{% url 'edit-play' slug=play.slug %}">Edit</a></span></p>
+                        {% endif %}
+                        {% if perms.core.delete_play %}
+                        <p class="card-footer-item"><span><a href="{% url 'delete-play' slug=play.slug %}">Delete</a></span></p>
+                        {% endif %}
+                    </footer>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% else %}
+
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+
+    <div class="columns">
+    <div class="column is-one-fifth"></div>
+        <div class="column">
+
+    {% if latest_news %}
+
+        <div class="container default ce">
+            <div class="section heading is-centered">
+                <h4 class="title has-text-grey-light  has-text-centered is-bold">News</h4>
+            </div>
+        </div>
+
+        <div class="box">
+            <article class="media">
+            <div class="media-left">
+              <figure class="image is-align-self-auto">
+                <a href="{% url 'all-news' %}"><img src="{% static 'sample_logo.png' %}" alt="Image"></a>
+              </figure>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong>{{ latest_news.title }}</strong> <small>{{ latest_news.date }}</small> <small>{{ n.time }}</small>
+                  <br>
+                  {{ latest_news.content }}
+                </p>
+              </div>
+
+    {% endif %}
+
+            </div>
+          </article>
+        </div>
+
+        </div>
+    <div class="column is-one-fifth"></div>
+    </div>
+
+{% if artists %}
+
+        <div class="container default ce">
+            <div class="section heading is-centered">
+                <h4 class="title has-text-grey-light  has-text-centered is-bold">Talents</h4>
+            </div>
+        </div>
+
+    <div class="container is-fullheight">
+    <div class="table-container is-fullheight">
+        <div class="columns mt-3 is-1 is-variable">
+
+
+            {% for a in artists %}
+            <div class="column is-4-tablet is-3-desktop">
+                <div class="card help">
+                    <div class="card-image has-text-centered px-6">
+                        <a href="{% url 'all-artists' %}"><img src="{% static 'sample_picture.jpg' %}" alt=""></a>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="is-size-4 has-text-centered">{{ a.first_name }} {{ a.last_name }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% else %}
+
+        {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}

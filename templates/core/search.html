@@ -7,10 +7,10 @@
 <div class="columns">
     <div class="column is-one-fifth"></div>
     <div class="column">
-        <div class="content is-boxed">
+        <div class="box has-shadow">
      {% if searched %}
-    <h5>The search returned {{ number_of_plays }} results.</h5>
     <h5>You searched for: "{{ searched }}"</h5>
+    <h5>The search returned {{ number_of_plays }} results.</h5>
 
          {% if plays %}
              <br>
@@ -29,7 +29,7 @@
          {% endif %}
          {% if artists %}
              <br>
-            <h6>News</h6>
+            <h6>Artists</h6>
             {% for a in artists %}
                 <li><a href="{% url 'details-artist' pk=a.pk %}">{{ a }}</a></li>
             {% endfor %}
