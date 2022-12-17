@@ -118,4 +118,7 @@ STATICFILES_DIRS = ('staticfiles/',)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+handler404 = 'core.views.custom_page_not_found_view'
+handler500 = 'core.views.error_view'
+handler403 = 'core.views.permission_denied_view'
+handler400 = 'core.views.bad_request_view'

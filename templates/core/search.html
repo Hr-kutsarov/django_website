@@ -4,13 +4,41 @@
 
 {% block content %}
 
-{% if searched %}
-    <h1>The search returned {{ number_of_plays }} items.</h1>
-    <h1>You searched for {{ searched }}</h1>
-    {% for play in plays %}
-        <li><a href="{% url 'play-details' slug=play.slug %}">{{ play }}</a></li>
+<div class="columns">
+    <div class="column is-one-fifth"></div>
+    <div class="column">
+        <div class="content is-boxed">
+     {% if searched %}
+    <h5>The search returned {{ number_of_plays }} results.</h5>
+    <h5>You searched for: "{{ searched }}"</h5>
 
-    {% endfor %}
+         {% if plays %}
+             <br>
+             <h6>Plays</h6>
+            {% for play in plays %}
+                <li><a href="{% url 'play-details' slug=play.slug %}">{{ play }}</a></li>
+            {% endfor %}
+         {% endif %}
+
+         {% if news %}
+             <br>
+             <h6>News</h6>
+            {% for n in news %}
+                <li><a href="{% url 'details-news' pk=n.pk %}">{{ n.title }}</a></li>
+            {% endfor %}
+         {% endif %}
+         {% if artists %}
+             <br>
+            <h6>News</h6>
+            {% for a in artists %}
+                <li><a href="{% url 'details-artist' pk=a.pk %}">{{ a }}</a></li>
+            {% endfor %}
+         {% endif %}
 {% endif %}
+        </div>
+    </div>
+    <div class="column is-one-fifth"></div>
+</div>
 
 {% endblock %}
+

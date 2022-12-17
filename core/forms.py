@@ -21,7 +21,12 @@ class PlayForm(ModelForm):
 class ArtistForm(ModelForm):
     class Meta:
         model = Artist
-        fields = ('first_name', 'last_name', 'birth_date', 'photo', 'bio')
+        fields = ('first_name', 'last_name', 'bio')
+        widgets = {
+            'first_name': forms.TextInput(attrs={'class': 'input', 'type': 'text', 'placeholder': 'First Name'}),
+            'last_name': forms.TextInput(attrs={'class': 'input', 'type': 'text', 'placeholder': 'Last Name'}),
+            'bio': forms.Textarea(attrs={'class': 'textarea', 'type': 'text', 'placeholder': 'Bio'}),
+        }
 
 
 class NewsForm(ModelForm):

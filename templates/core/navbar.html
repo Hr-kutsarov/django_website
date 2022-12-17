@@ -7,19 +7,17 @@
 
     <div class="navbar-start">
         <div class="navbar-item is-boxed"><a href="{% url 'all-plays' %}">Watch now</a></div>
+        {% if perms.core.add_play %}
         <div class="navbar-item is-boxed"><a href="{% url 'create-play' %}">Create play</a></div>
-        <div class="navbar-item is-boxed"><a href="#">Artists</a></div>
+        {% endif %}
+        <div class="navbar-item is-boxed"><a href="{% url 'all-artists' %}">Artists</a></div>
         <div class="navbar-item is-boxed"><a href="{% url 'all-news' %}">News</a></div>
+        <div class="navbar-item is-boxed"><a href="{% url 'register_admin' %}">Staff Only</a></div>
+
 
         {% if user.is_authenticated %}
             <div class="navbar-item is-boxed"><a href="#">Buy a ticket</a></div>
-            <div class="navbar-item is-boxed"><a href="#">Make a gift</a></div>
-
         {% endif %}
-
-
-
-    <div class="navbar-end">
         {% if user.is_authenticated %}
             <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="{% url 'profile' %}">Profile</a>
@@ -31,7 +29,7 @@
                 </div>
             </div>
         {% else %}
-            <div class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="#">Profile</a>
                 <div class="navbar-dropdown is-boxed">
                   <a class="navbar-item" href="{% url 'login' %}">Sign in</a>
@@ -39,16 +37,12 @@
                   <a class="navbar-item" href="{% url 'register' %}">Register</a>
                 </div>
             </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link" href="#">Staff Only</a>
-                <div class="navbar-dropdown is-boxed">
-                  <a class="navbar-item" href="{% url 'login' %}">Sign in</a>
-                    <hr class="navbar-divider">
-                  <a class="navbar-item" href="{% url 'register_admin' %}">Register</a>
-                </div>
-            </div>
         {% endif %}
 
+
+
+
+    <div class="navbar-end">
       <div class="navbar-item">
         <div class="control">
 

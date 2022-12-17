@@ -7,24 +7,28 @@
     <div class="columns">
         <div class="column is is-one-fifth"></div>
         <div class="column">
-
+                {% if perms.core.change_play %}
                 <form method="post">
 
                 {% csrf_token %}
 
                 {{ form.as_p }}
-
+                <br>
                 <div class="mb-3">
+
+                        <button class="button is-medium">Submit</button>
+
                     {% if perms.core.delete_play %}
                         <button class="button is-medium is-danger"><a href="{% url 'delete-play' slug=play.slug %}">Delete</a></button>
                     {% endif %}
-
-                    {% if perms.core.change_play %}
-                        <button class="button is-medium">Submit</button>
-                    {% endif %}
                 </div>
                 </form>
-
+                        {% else %}
+                <article class="message">
+                  <div class="message-header"><p>Message</p></div>
+                <div class="message-body">You have no permissions to view this page.</div>
+                </article>
+                {% endif %}
             </div>
         <div class="column is is-one-fifth"></div>
         </div>

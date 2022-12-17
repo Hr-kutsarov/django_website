@@ -1,0 +1,47 @@
+{% extends 'core/Base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="container is-fullheight">
+    <div class="columns">
+        <div class="column is is-one-fifth"></div>
+        <div class="column">
+
+        <div class="box">
+
+  <article class="media">
+    <div class="media-left">
+      <figure class="image is-align-self-auto">
+        <a href="#"><img src="{% static 'sample_logo.png' %}" alt="Image"></a>
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong>{{ artists.first_name }} {{ artists.last_name }}</strong>
+          <br>
+          {{ artists.bio }}
+        </p>
+      </div>
+      <nav class="level">
+        <div class="level-right">
+        {% if perms.core.change_artist %}
+            <button class="button is-small"><a href="{% url 'edit-artist' pk=artists.pk %}">Edit</a></button>
+        {% endif %}
+        {% if perms.core.delete_artist %}
+            <button class="button is-small"><a href="{% url 'delete-artist' pk=artists.pk %}">Delete</a></button>
+        {% endif %}
+        </div>
+      </nav>
+
+    </div>
+  </article>
+</div>
+            
+        </div>
+        <div class="column is is-one-fifth"></div>
+        </div>
+    </div>
+
+{% endblock %}

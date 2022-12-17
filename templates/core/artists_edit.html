@@ -7,9 +7,10 @@
     <div class="columns">
         <div class="column is is-one-fifth"></div>
         <div class="column">
-            <h1><strong>Edit news</strong></h1>
+            {% if core.perms.change_artist %}
+            <h1><strong>Edit artist</strong></h1>
         <br>
-                {% if perms.core.change_news %}
+
                 <form method="post">
 
                 {% csrf_token %}
@@ -22,15 +23,12 @@
                     <button class="button is-medium">Submit</button>
                 </div>
                 </form>
-
                 {% else %}
-
                 <article class="message">
                   <div class="message-header"><p>Message</p></div>
                 <div class="message-body">You have no permissions to view this page.</div>
                 </article>
-
-                {% endif %}
+            {% endif %}
 
             </div>
         <div class="column is is-one-fifth"></div>

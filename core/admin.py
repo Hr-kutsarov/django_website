@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import Artist, Play, Ticket, News
+from .models import Artist, Play, News
 
 admin.site.register(Artist)
-admin.site.register(Ticket)
 
 
 @admin.register(Play)

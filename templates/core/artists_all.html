@@ -8,13 +8,13 @@
         <div class="column is is-one-fifth"></div>
         <div class="column">
 
-        {% if all_news %}
-            <div class="block"><strong>All news</strong></div>
+        {% if artists %}
+            <div class="block"><strong>All artists</strong></div>
         {% else %}
-            <div class="block"><strong>No News</strong></div>
+            <div class="block"><strong>No Artists</strong></div>
         {% endif %}
 
-            {% for n in all_news %}
+            {% for a in artists %}
             <div class="box">
 
 
@@ -27,19 +27,20 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{ n.title }}</strong> <small>{{ n.date }}</small> <small>{{ n.time }}</small>
+          <strong>{{ a.first_name }} {{ a.last_name }}</strong>
           <br>
-          {{ n.content }}
+          {{ a.birth_date }}
+          {{ a.bio }}
         </p>
       </div>
       <nav class="level">
         <div class="level-right">
-            {% if perms.core.change_news %}
-            <button class="button is-small"><a href="{% url 'edit-news' pk=n.pk %}">Edit</a></button>
-            {% endif %}
-            {% if perms.core.delete_news %}
-            <button class="button is-small"><a href="{% url 'delete-news' pk=n.pk %}">Delete</a></button>
-            {% endif %}
+        {% if perms.core.change_artist %}
+            <button class="button is-small"><a href="{% url 'edit-artist' pk=a.pk %}">Edit</a></button>
+        {% endif %}
+        {% if perms.core.delete_artist %}
+            <button class="button is-small"><a href="{% url 'delete-artist' pk=a.pk %}">Delete</a></button>
+        {% endif %}
         </div>
       </nav>
 
@@ -62,8 +63,8 @@
     {% endif %}
 </ul>
 {% endif %}
-        {% if perms.core.add_news %}
-        <button class="button is-medium"><a href="{% url 'create-news' %}">Create</a></button>
+        {% if perms.core.add_artist %}
+        <button class="button is-medium"><a href="{% url 'create-artist' %}">Create</a></button>
         {% endif %}
         </div>
         <div class="column is is-one-fifth"></div>

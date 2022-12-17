@@ -14,6 +14,15 @@ urlpatterns = [
 
     path('news/', AllNews.as_view(), name='all-news'),
     path('create_news/', NewsCreate.as_view(), name='create-news'),
-    path('edit/<int:pk>', NewsEdit.as_view(), name='edit-news'),
-    path('delete/<int:pk>', NewsDelete.as_view(), name='delete-news'),
+    path('news_details/<int:pk>', NewsDetails.as_view(), name='details-news'),
+    path('news_edit/<int:pk>', NewsEdit.as_view(), name='edit-news'),
+    path('news_delete/<int:pk>', NewsDelete.as_view(), name='delete-news'),
+
+
+    path('artists/', AllArtists.as_view(), name='all-artists'),
+    path('create_artist/', ArtistCreate.as_view(), name='create-artist'),
+    path('artists_details/<int:pk>', ArtistDetails.as_view(), name='details-artist'),
+    path('artists_edit/<int:pk>/', ArtistEdit.as_view(), name='edit-artist'),
+    path('artists_delete/<int:pk>', ArtistDelete.as_view(), name='delete-artist'),
+
 ]

@@ -3,8 +3,11 @@
 
 
 {% block content %}
-
-    <h1><a href="{% url 'home' %}">Return to home page</a></h1>
-
-
+<div class="columns">
+    <div class="column is-one-fifth"></div>
+    <div class="column">
+        <p class="class is-align-self-center"><a href="{% url 'home' %}">Return to home page</a></p>
+    </div>
+    <div class="column is-one-fifth"></div>
+</div>
 {% endblock %}

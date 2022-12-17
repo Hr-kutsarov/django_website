@@ -7,8 +7,9 @@
     <div class="columns">
         <div class="column is is-one-fifth"></div>
         <div class="column">
+            {% if perms.core.add_play %}
             <h1><strong>Create new play</strong></h1>
-        <br>
+                <br>
                 <form method="post">
 
                 {% csrf_token %}
@@ -16,14 +17,17 @@
                 {{ form.as_p }}
 
                 <div class="mb-3">
-
-
-                    {% if perms.core.add_play %}
-                        <br>
-                        <button class="button is-medium">Submit</button>
-                    {% endif %}
+                    <br>
+                    <button class="button is-medium">Submit</button>
                 </div>
                 </form>
+
+                {% else %}
+                <article class="message">
+                  <div class="message-header"><p>Message</p></div>
+                <div class="message-body">You have no permissions to view this page.</div>
+                </article>
+                {% endif %}
 
             </div>
         <div class="column is is-one-fifth"></div>

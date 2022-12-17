@@ -1,12 +1,11 @@
-from datetime import datetime
-
-from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.db.models import Q
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from . models import *
 from django.views import generic as views
-from .forms import PlayForm, NewsForm
+from .forms import PlayForm, NewsForm, ArtistForm
+from itertools import chain
 
 
 class Home(views.TemplateView):
@@ -51,13 +50,14 @@ def search_plays(request):
     if request.method == 'POST':
         searched = request.POST['searched']
         plays = Play.objects.filter(title__contains=searched)
-        number_of_plays = len(plays)
-        context = {'plays': plays, 'searched': searched, 'number_of_plays': number_of_plays}
+        artists = Artist.objects.filter(Q(first_name__contains=searched) | Q(last_name__contains=searched))
+        news = News.objects.filter(title__contains=searched)
+        number_of_items = len(plays) + len(artists) + len(news)
+        context = {'plays': plays, 'news': news, 'artists': artists, 'searched': searched, 'number_of_plays': number_of_items}
         return render(request, 'core/search.html', context)
 
 
 def profile(request):
-
     return render(request, 'core/profile.html', {})
 
 
@@ -90,6 +90,12 @@ class NewsCreate(views.CreateView):
     success_url = reverse_lazy('all-news')
 
 
+class NewsDetails(views.DetailView):
+    template_name = 'core/news_details.html'
+    model = News
+    context_object_name = 'news'
+
+
 class NewsEdit(views.UpdateView):
     model = News
     form_class = NewsForm
@@ -104,5 +110,33 @@ class NewsDelete(views.DeleteView):
     success_url = reverse_lazy('all-news')
 
 
+class AllArtists(views.ListView):
+    model = Artist
+    context_object_name = 'artists'
+    template_name = 'core/artists_all.html'
 
 
+class ArtistCreate(views.CreateView):
+    template_name = 'core/artists_create.html'
+    form_class = ArtistForm
+    success_url = reverse_lazy('all-artists')
+
+
+class ArtistDetails(views.DetailView):
+    model = Artist
+    template_name = 'core/artists_details.html'
+    context_object_name = 'artists'
+
+
+class ArtistEdit(views.UpdateView):
+    model = Artist
+    form_class = ArtistForm
+    template_name = 'core/artists_edit.html'
+    context_object_name = 'artists'
+    success_url = reverse_lazy('all-artists')
+
+
+class ArtistDelete(views.DeleteView):
+    model = Artist
+    template_name = 'core/delete-confirm.html'
+    success_url = reverse_lazy('all-artists')

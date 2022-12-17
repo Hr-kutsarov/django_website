@@ -15,7 +15,7 @@ def login_user_view(request):
             login(request, user)
             return redirect('home')
         else:
-            messages.success(request, 'There was an error logging in.')
+            messages.success(request, 'Invalid user or password.')
             return redirect('login')
     return render(request, 'membership/login.html', {})
 
@@ -60,3 +60,4 @@ def register_moderator_view(request):
         form = DefaultUserRegisterForm()
 
     return render(request, 'membership/register.html', {'form': form})
+
