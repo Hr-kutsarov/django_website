@@ -5,7 +5,32 @@ from django.urls import reverse_lazy
 from . models import *
 from django.views import generic as views
 from .forms import PlayForm, NewsForm, ArtistForm
-from itertools import chain
+from django.template import loader
+from django.http import HttpResponse, response
+
+
+def handler404(request, *args, **kwargs):
+    template = loader.get_template('errors/404_not_found.html')
+    response.status_code = 404
+    return HttpResponse(template.render({}, request), status=404)
+
+
+def handler403(request, *args, **kwargs):
+    template = loader.get_template('errors/403.html')
+    response.status_code = 403
+    return HttpResponse(template.render({}, request), status=403)
+
+
+def handler400(request, *args, **kwargs):
+    template = loader.get_template('errors/400_bad_request.html')
+    response.status_code = 400
+    return HttpResponse(template.render({}, request), status=400)
+
+
+def handler500(request, *args, **kwargs):
+    template = loader.get_template('errors/500_error.html')
+    response.status_code = 500
+    return HttpResponse(template.render({}, request), status=500)
 
 
 class Home(views.TemplateView):
