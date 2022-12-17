@@ -3,10 +3,6 @@
 
 
 {% block content %}
-    {% if user.is_authenticated %}
-        <h1>Logged as {{ user }}</h1>
-        <h1>{{ perms.core }}</h1>
-    {% endif %}
 {% if plays %}
 <div class="container default ce">
     <div class="section heading is-centered">

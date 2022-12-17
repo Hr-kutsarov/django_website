@@ -17,8 +17,6 @@
 
         {% if user.is_authenticated %}
             <div class="navbar-item is-boxed"><a href="#">Buy a ticket</a></div>
-        {% endif %}
-        {% if user.is_authenticated %}
             <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="{% url 'profile' %}">Profile</a>
                 <div class="navbar-dropdown is-boxed">
@@ -28,6 +26,7 @@
                   <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
                 </div>
             </div>
+
         {% else %}
                 <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link" href="#">Profile</a>
@@ -42,8 +41,11 @@
 
 
 
-    <div class="navbar-end">
+    <div class="navbar-end is-right">
       <div class="navbar-item">
+          {% if user.is_authenticated %}
+          <div class="navbar-item"> Welcome {{ user }} </div>
+          {% endif %}
         <div class="control">
 
             <form class="is-active" method=POST action="{% url 'search_results' %}">
