@@ -5,19 +5,19 @@ from datetime import datetime
 
 
 class Artist(models.Model):
-    first_name = models.CharField('First Name', max_length=60, blank=False, null=False)
-    last_name = models.CharField('Last Name', max_length=60, blank=False, null=False)
+    first_name = models.CharField('First Name', max_length=15, blank=False, null=False)
+    last_name = models.CharField('Last Name', max_length=15, blank=False, null=False)
     birth_date = models.CharField('Birth Date', max_length=10, blank=True, null=True)
     photo = models.ImageField('Photo', blank=True, null=True)
-    bio = models.CharField('Bio', max_length=360, blank=False, null=False)
+    bio = models.CharField('Bio', max_length=400, blank=False, null=False)
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
 
 class Play(models.Model):
-    title = models.CharField('Title', max_length=60, unique=True, blank=False, null=False)
-    genre = models.CharField('Genre', max_length=20, blank=False, null=False)
+    title = models.CharField('Title', max_length=30, unique=True, blank=False, null=False)
+    genre = models.CharField('Genre', max_length=15, blank=False, null=False)
     date = models.DateField('Date', blank=False, null=False)
     time = models.TimeField('Time', blank=False, null=False)
     description = models.CharField('Description', max_length=360, blank=True, null=True)
@@ -61,7 +61,7 @@ class User(models.Model):
 
 
 class News(models.Model):
-    title = models.CharField('Title', max_length=60, unique=True, blank=False, null=False)
+    title = models.CharField('Title', max_length=30, unique=True, blank=False, null=False)
     date = models.DateField('Date', blank=False, null=False, default=datetime.now)
     time = models.TimeField('Time', blank=False, null=False, default=datetime.now)
     content = models.CharField('Content', max_length=360, blank=True, null=True)
